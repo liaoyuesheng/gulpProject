@@ -48,7 +48,7 @@ gulp.task('sprite', function () {
 
     // css流
     var cssStream = spriteData.css
-        .pipe(gulp.dest('src/assets/less/'));
+        .pipe(gulp.dest('src/assets/less/import/'));
 
     // 返回合并流
     return merge(imgStream, cssStream);
@@ -62,7 +62,7 @@ gulp.task('sprite_less', ['sprite'], compileLess);
 
 // 编译less方法
 function compileLess(){
-    return gulp.src('src/assets/less/common.less')
+    return gulp.src(['src/assets/less/**/*.less','!src/assets/less/import/**'])
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(sourcemaps.write('../map/'))
