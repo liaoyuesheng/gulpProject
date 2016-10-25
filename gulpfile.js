@@ -6,6 +6,7 @@
  */
 
 var gulp = require('gulp');
+var del = require('del');
 var plumber = require('gulp-plumber');
 var ejs = require('gulp-ejs');
 var spritesmith = require('gulp.spritesmith');
@@ -14,14 +15,20 @@ var less = require('gulp-less');
 var sourcemaps = require('gulp-sourcemaps');
 
 // 不编译复制文件
-gulp.task('copy', function(){
-    gulp.src(['src/assets/**/js/**','src/assets/**/lib/**'])
+gulp.task('clean:copy', function(){
+    del(['src/assets/js/**']);
+    del(['src/assets/lib/**']);
+});
+gulp.task('copy', ['clean:copy'], function(){
+    gulp.src(['src/assets/js/**','src/assets/lib/**'])
         .pipe(gulp.dest('build/assets/'));
 });
 
-
 // html模板引擎
-gulp.task('ejs', function () {
+gulp.task('clean:ejs', function(){
+    return del(['build/**/*.html','!build/assets/lib/**']);
+});
+gulp.task('ejs', ['clean:ejs'], function () {
     return gulp.src(['src/**/*.html', '!src/htmlTemp/**'])
         .pipe(plumber({
             handleError: function (err) {
@@ -55,10 +62,13 @@ gulp.task('sprite', function () {
 });
 
 // less
-gulp.task('less', compileLess);
+gulp.task('clean:less', function(){
+    return del(['build/assets/css/**'])
+});
+gulp.task('less',['clean:less'], compileLess);
 
 // 依赖sprite的less
-gulp.task('sprite_less', ['sprite'], compileLess);
+gulp.task('sprite_less', ['clean:less','sprite'], compileLess);
 
 // 编译less方法
 function compileLess(){
@@ -68,8 +78,15 @@ function compileLess(){
         .pipe(sourcemaps.write('../map/'))
         .pipe(gulp.dest('build/assets/css/'))
 }
-// build
+
+// build 测试环境
 gulp.task('build', ['copy','ejs', 'sprite_less']);
+
+// dist 生产环境
+gulp.task('dist', ['build'], function(){
+    return gulp.src(['build/**'])
+        .pipe(gulp.dest('dist/'))
+});
 
 // 监听
 gulp.task('default', ['build'], function () {
