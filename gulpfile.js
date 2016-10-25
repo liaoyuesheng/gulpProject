@@ -29,7 +29,7 @@ gulp.task('clean:ejs', function(){
     return del(['build/**/*.html','!build/assets/lib/**']);
 });
 gulp.task('ejs', ['clean:ejs'], function () {
-    return gulp.src(['src/**/*.html', '!src/htmlTemp/**'])
+    return gulp.src(['src/**/*.html', '!src/tmpl/**'])
         .pipe(plumber({
             handleError: function (err) {
                 console.log(err);
