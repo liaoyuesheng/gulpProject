@@ -16,7 +16,7 @@ var sourcemaps = require('gulp-sourcemaps');
 // 不编译复制文件
 gulp.task('copy', function(){
     gulp.src(['src/assets/**/js/**','src/assets/**/lib/**'])
-        .pipe(gulp.dest('dist/assets/'));
+        .pipe(gulp.dest('build/assets/'));
 });
 
 
@@ -30,7 +30,7 @@ gulp.task('ejs', function () {
             }
         }))
         .pipe(ejs())
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('build'))
 });
 
 // 图片精灵
@@ -44,7 +44,7 @@ gulp.task('sprite', function () {
 
     // 图片流
     var imgStream = spriteData.img
-        .pipe(gulp.dest('dist/assets/images/'));
+        .pipe(gulp.dest('build/assets/images/'));
 
     // css流
     var cssStream = spriteData.css
@@ -66,7 +66,7 @@ function compileLess(){
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(sourcemaps.write('../map/'))
-        .pipe(gulp.dest('dist/assets/css/'))
+        .pipe(gulp.dest('build/assets/css/'))
 }
 // build
 gulp.task('build', ['copy','ejs', 'sprite_less']);
