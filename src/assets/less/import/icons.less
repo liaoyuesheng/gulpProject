@@ -1,37 +1,3 @@
+/* 图标 */
 @import "sprite";
-.spriteby(@sprite) {
-  .sprite-position(@sprite);
-  .sprite-width(@sprite);
-  .sprite-height(@sprite);
-}
-.sprite-size(@sprite){
-  .sprite-width(@sprite);
-  .sprite-height(@sprite);
-}
-[class*=icon-] {
-  @sprite-image-bare: ~`"@{spritesheet-image}".slice(1, -1)`;
-  background-image: url(@sprite-image-bare);
-  background-repeat: no-repeat;
-  display: inline-block;
-  vertical-align: middle;
-}
-.icon-arrow {
-  .spriteby(@arrow);
-  &.active {
-    .sprite-position(@arrow-active);
-  }
-}
-
-[class*=icon-site] {
-  .sprite-size(@site-gray);
-}
-
-.icon-site-gray {
-  .sprite-position(@site-gray)
-}
-.icon-site-green {
-  .sprite-position(@site-green)
-}
-.icon-site-red {
-  .sprite-position(@site-red)
-}
+// 对sprite进一步处理

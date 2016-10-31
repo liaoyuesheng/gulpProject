@@ -8,6 +8,7 @@
 var gulp = require('gulp');
 var del = require('del');
 var plumber = require('gulp-plumber');
+var notify = require('gulp-notify');
 var ejs = require('gulp-ejs');
 var spritesmith = require('gulp.spritesmith');
 var merge = require('merge-stream');
@@ -16,11 +17,12 @@ var sourcemaps = require('gulp-sourcemaps');
 
 // 不编译复制文件
 gulp.task('clean:copy', function(){
-    del(['src/assets/js/**']);
-    del(['src/assets/lib/**']);
+    del(['build/assets/js/**']);
+    del(['build/assets/lib/**']);
+    del(['build/assets/images/**/*.*','!build/assets/**/images/sprite.png']);
 });
 gulp.task('copy', ['clean:copy'], function(){
-    gulp.src(['src/assets/js/**','src/assets/lib/**'])
+    gulp.src(['src/assets/**/js/**','src/assets/**/lib/**','src/assets/**/images/**'])
         .pipe(gulp.dest('build/assets/'));
 });
 
@@ -43,10 +45,11 @@ gulp.task('ejs', ['clean:ejs'], function () {
 // 图片精灵
 gulp.task('sprite', function () {
     // 生成sprite
-    var spriteData = gulp.src('src/assets/images/icons/*.png').pipe(spritesmith({
+    var spriteData = gulp.src('src/assets/icons/*.png').pipe(spritesmith({
         imgName: 'sprite.png',
         cssName: 'sprite.less',
-        imgPath: '../images/sprite.png'
+        imgPath: '../images/sprite.png',
+        cssTemplate: 'handlebarsStr.css.handlebars'
     }));
 
     // 图片流
@@ -73,6 +76,9 @@ gulp.task('sprite_less', ['clean:less','sprite'], compileLess);
 // 编译less方法
 function compileLess(){
     return gulp.src(['src/assets/less/**/*.less','!src/assets/less/import/**'])
+        .pipe(plumber({
+            errorHandler: notify.onError('Error: <%= error.message %>')
+        }))
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(sourcemaps.write('../map/'))
@@ -90,8 +96,8 @@ gulp.task('dist', ['build'], function(){
 
 // 监听
 gulp.task('default', ['build'], function () {
-    gulp.watch(['src/assets/js/**/*.*','src/assets/lib/**/*.*'], ['copy']);
+    gulp.watch(['src/assets/js/**/*.*','src/assets/lib/**/*.*','src/assets/images/**/*.*'], ['copy']);
     gulp.watch(['src/**/*.html'], ['ejs']);
-    gulp.watch(['src/assets/images/icons/*.png'], ['sprite']);
+    gulp.watch(['src/assets/icons/*.png'], ['sprite']);
     gulp.watch(['src/assets/less/**/*.*'], ['less']);
 });

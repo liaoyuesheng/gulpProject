@@ -1,0 +1,30 @@
+// 公用class及对应的混合
+/*公用class*/
+// 清除浮动 class
+.clearfix {
+    &:before,
+    &:after {
+      content: " "; // 1
+      display: table; // 2
+    }
+    &:after {
+      clear: both;
+    }
+}
+// 清除浮动 mixin
+.exclearfix() {
+    &:after {
+      &:extend(.clearfix:after);
+    }
+    &:before {
+      &:extend(.clearfix:before);
+    }
+}
+
+.inline-block {
+    display: inline-block;
+    vertical-align: middle;
+}
+.pointer {
+    cursor: pointer;
+}
