@@ -6,28 +6,37 @@
     width: 14px;
     height: 14px;
 }
+@arrow-active-position: 0px 0px;
 .icon-arrow {
     background-position: -14px 0px;
     width: 14px;
     height: 14px;
 }
+@arrow-position: -14px 0px;
 .icon-site-green {
     background-position: 0px -14px;
     width: 12px;
     height: 16px;
 }
+@site-green-position: 0px -14px;
 .icon-site-red {
     background-position: -12px -14px;
     width: 12px;
     height: 16px;
 }
+@site-red-position: -12px -14px;
 .icon-site-red1 {
     background-position: -28px 0px;
     width: 12px;
     height: 16px;
 }
+@site-red1-position: -28px 0px;
 .icon-site_gray {
     background-position: -40px 0px;
     width: 12px;
     height: 16px;
+}
+@site_gray-position: -40px 0px;
+.sprite-position(@name-position){
+    background-position: @name-position;
 }

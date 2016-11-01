@@ -85,5 +85,8 @@ input {
   width: 12px;
   height: 16px;
 }
+.icon-arrow.active {
+  background-position: 0px 0px;
+}
 
 /*# sourceMappingURL=../map/common.css.map */
