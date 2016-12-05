@@ -15,6 +15,15 @@ dd,
 p {
   margin: 0;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: normal;
+}
 ul {
   list-style-type: none;
   padding: 0;
@@ -32,8 +41,6 @@ button,
 input {
   font: inherit;
   cursor: pointer;
-  border: 0;
-  outline: none;
 }
 /*公用class*/
 .clearfix:before,
@@ -51,7 +58,7 @@ input {
 .pointer {
   cursor: pointer;
 }
-/* 图标 */
+/*sprites*/
 [class*="icon-"] {
   background-image: url(../images/sprite.png);
 }
@@ -84,9 +91,6 @@ input {
   background-position: -40px 0px;
   width: 12px;
   height: 16px;
-}
-.icon-arrow.active {
-  background-position: 0px 0px;
 }
 
 /*# sourceMappingURL=../map/common.css.map */

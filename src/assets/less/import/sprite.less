@@ -1,42 +1,54 @@
+/*sprites*/
+@sprite-url: url(../images/sprite.png);
+@arrow-active-position: 0px 0px;
+@arrow-active-width: 14px;
+@arrow-active-height: 14px;
+@arrow-position: -14px 0px;
+@arrow-width: 14px;
+@arrow-height: 14px;
+@site-green-position: 0px -14px;
+@site-green-width: 12px;
+@site-green-height: 16px;
+@site-red-position: -12px -14px;
+@site-red-width: 12px;
+@site-red-height: 16px;
+@site-red1-position: -28px 0px;
+@site-red1-width: 12px;
+@site-red1-height: 16px;
+@site_gray-position: -40px 0px;
+@site_gray-width: 12px;
+@site_gray-height: 16px;
+
 [class*="icon-"] {
-    background-image: url(../images/sprite.png);
+background-image: url(../images/sprite.png);
 }
 .icon-arrow-active {
     background-position: 0px 0px;
     width: 14px;
     height: 14px;
 }
-@arrow-active-position: 0px 0px;
 .icon-arrow {
     background-position: -14px 0px;
     width: 14px;
     height: 14px;
 }
-@arrow-position: -14px 0px;
 .icon-site-green {
     background-position: 0px -14px;
     width: 12px;
     height: 16px;
 }
-@site-green-position: 0px -14px;
 .icon-site-red {
     background-position: -12px -14px;
     width: 12px;
     height: 16px;
 }
-@site-red-position: -12px -14px;
 .icon-site-red1 {
     background-position: -28px 0px;
     width: 12px;
     height: 16px;
 }
-@site-red1-position: -28px 0px;
 .icon-site_gray {
     background-position: -40px 0px;
     width: 12px;
     height: 16px;
-}
-@site_gray-position: -40px 0px;
-.sprite-position(@name-position){
-    background-position: @name-position;
 }

@@ -96,7 +96,7 @@ gulp.task('dist', ['build'], function(){
 
 // 监听
 gulp.task('default', ['build'], function () {
-    gulp.watch(['src/assets/js/**/*.*','src/assets/lib/**/*.*','src/assets/images/**/*.*'], ['copy']);
+    gulp.watch(['src/assets/js/**','src/assets/lib/**','src/assets/images/**'], ['copy']);
     gulp.watch(['src/**/*.html'], ['ejs']);
     gulp.watch(['src/assets/icons/*.png'], ['sprite']);
     gulp.watch(['src/assets/less/**/*.*'], ['less']);
