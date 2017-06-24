@@ -1,12 +1,12 @@
-/*sprites*/
-@sprite-url: url({{spritesheet.escaped_image}});
+/*sprites icons*/
+@{{name}}sprite-url: url({{spritesheet.escaped_image}});
 {{#sprites}}
-@{{name}}-position: {{px.offset_x}} {{px.offset_y}};
-@{{name}}-width: {{px.width}};
-@{{name}}-height: {{px.height}};
+@icon-{{name}}-position: {{px.offset_x}} {{px.offset_y}};
+@icon-{{name}}-width: {{px.width}};
+@icon-{{name}}-height: {{px.height}};
 {{/sprites}}
 
-[class*="icon-"] {
+.icon {
 background-image: url({{spritesheet.escaped_image}});
 }
 {{#sprites}}
